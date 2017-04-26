@@ -1,0 +1,28 @@
+{
+  "name": "tspj",
+  "version": "1.0.0",
+  "description": "TypeScript 练习项目",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asural/TSPJ.git"
+  },
+  "keywords": [
+    "TSPJ"
+  ],
+  "author": "LOUI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asural/TSPJ/issues"
+  },
+  "homepage": "https://github.com/asural/TSPJ#readme",
+  "devDependencies": {
+    "gulp-typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
