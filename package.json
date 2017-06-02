@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/asural/TSPJ#readme",
   "devDependencies": {
-    "gulp-typescript": "^3.1.6"
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.7"
   },
   "dependencies": {
     "jquery": "^3.2.1"
