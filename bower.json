@@ -1,0 +1,21 @@
+{
+  "name": "tspj",
+  "description": "TypeScript 练习项目",
+  "main": "gulpfile.js",
+  "authors": [
+    "LOUI"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "TSPJ"
+  ],
+  "homepage": "https://github.com/asural/TSPJ",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
