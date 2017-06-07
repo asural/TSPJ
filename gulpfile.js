@@ -43,8 +43,9 @@ gulp.task('tsc-tests', function() {
 var browserify = require('browserify'),
     source = require('vinyl-source-stream'), //转换为vinyl 
     uglify = require('gulp-uglify'), //压缩
-    streamify = require('gulp-streamify'),
-    sourcemaps = require('gulp-sourcemaps'); //源码转换
+    streamify = require('gulp-streamify'), // Buffer 到 Stream
+    sourcemaps = require('gulp-sourcemaps'), //源码转换
+    through2 = require('through2'); //操作 vinyl 文件对象
 // var browserified = transform(function(filename) {
 //     var b = browserify({ entries: filename, debug: true });
 //     return b.bundle();
@@ -66,21 +67,34 @@ var browserify = require('browserify'),
 //         .pipe(sourcemaps.write('src'))
 //         .pipe(gulp.dest('src/dest/source/js/'));
 // });
-gulp.task('browserify1', function() {
-    console.log(12313);
-    return browserify('src/temp/source/js/main.js').bundle()
-        .pipe(source('1.js'))
-        .pipe(streamify(uglify()))
-        .pipe(gulp.dest('src/brw/'))
-});
 // gulp.task('browserify1', function() {
 //     console.log(12313);
-//     return gulp.src('src/temp/source/js/*.js')
-//         .pipe(browserify('src/temp/source/js/main.js')).bundle()
-//         .pipe(source('src/temp/source/js/main.js'))
+//     return browserify('src/temp/source/js/*.js').bundle()
+//         .pipe(source('1.js'))
 //         .pipe(streamify(uglify()))
 //         .pipe(gulp.dest('src/brw/'))
 // });
+//https://csspod.com/using-browserify-with-gulp/
+
+gulp.task('browserify1', function() {
+    console.log(12313);
+    return gulp.src('src/temp/source/js/*.js')
+        .pipe(through2.obj(function(file, enc, next) {
+            console.log(file.path);
+            return browserify(file.path)
+                // .bundle(function(err, res) {
+                //     console.log('error123')
+                //     err && console.log(err.stack);
+                //     file.contents = res;
+                //     next(null, file);
+                // });
+                .bundle().pipe(source('1.js'))
+                .pipe(streamify(uglify()))
+                .pipe(gulp.dest('src/brw/'))
+
+        }))
+
+});
 var runSequence = require('run-sequence');
 // gulp.task('default', ['lint', 'tsc', 'tsc-tests', 'bundle-js']);
 gulp.task('default', function(cb) {
